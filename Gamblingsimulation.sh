@@ -44,3 +44,12 @@ function getTotalAmount() {
 		fi
 }
 getTotalAmount
+
+function getLuckiestUnluckiestDay(){
+for i in ${!totalAmount[@]}
+do
+	echo $i ${totalAmount[$i]}
+done | sort -rn -k2
+}
+echo "Luckiest Day Win maximum :" $(getLuckiestUnluckiestDay | head -1)
+echo "Unlucky Day lost maximum :" $(getLuckiestUnluckiestDay | tail -1)
