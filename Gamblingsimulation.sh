@@ -45,13 +45,25 @@ function getTotalAmount() {
 }
 getTotalAmount
 
-function getLuckiestUnluckiestDay(){
+function getLuckiestUnluckiestDay() {
 
 	for i in ${!totalAmount[@]}
 	do
 		echo $i ${totalAmount[$i]}
 	done | sort -rn -k2
 }
-
 echo "Luckiest Day Win maximum :" $(getLuckiestUnluckiestDay | head -1)
 echo "Unlucky Day lost maximum :" $(getLuckiestUnluckiestDay | tail -1)
+
+function checkPlayNextMonth() {
+
+	while [[ ${totalAmount[20]} -gt 0 ]]
+	do
+		getTotalAmount
+
+		echo "Luckiest Day:" $(getLuckiestUnluckiestDay | head -1)
+		echo "Unluckiest Day:" $(getLuckiestUnluckisetDay | tail -1)
+	done
+	echo "Less Amount Can not Play Game"
+}
+checkPlayNextMonth
