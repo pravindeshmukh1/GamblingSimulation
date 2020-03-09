@@ -1,5 +1,6 @@
 #!/bin/bash -x
 declare -A totalAmount
+
 echo "Welcome to Gambling Simulation"
 
 #constant
@@ -26,19 +27,20 @@ function checkWinLoose() {
 }
 
 function getTotalAmount() {
- 	for (( day=1;day<20;day++ ))
-	do
-		totalAmount=$((totalAmount + $(checkWinLoose)))
-		totalAmount[$day]=$totalAmount
-	done
-		echo ${totalAmount[@]}
-		echo ${!totalAmount[@]}
 
-	if [[ $totalAmount -gt 0 ]]
-	then
-		echo "Total Amount win" $totalAmount
-	else
-		echo "Total Amount Loose" $totalAmount
-	fi
+		for (( day=1;day<20;day++ ))
+		do
+			totalAmount=$((totalAmount + $(checkWinLoose)))
+			totalAmount[$day]=$totalAmount
+		done
+			echo "amount " ${totalAmount[@]}
+			echo "day " ${!totalAmount[@]}
+
+		if [[ $totalAmount -gt 0 ]]
+		then
+			echo "Total Amount win" $totalAmount
+		else
+			echo "Total Amount Loose" $totalAmount
+		fi
 }
 getTotalAmount
