@@ -1,5 +1,5 @@
 #!/bin/bash -x
-
+declare -A totalAmount
 echo "Welcome to Gambling Simulation"
 
 #constant
@@ -9,7 +9,7 @@ CASH=$STAKE
 
 MAX_STAKE=$((STAKE+STAKE/2))
 MIN_STAKE=$((MAX_STAKE-STAKE))
-echo $MAX_STAKE $MIN_STAKE
+
 
 function checkWinLoose() {
 	while [[ $CASH -lt $MAX_STAKE  && $CASH -gt $MIN_STAKE ]]
@@ -26,10 +26,13 @@ function checkWinLoose() {
 }
 
 function getTotalAmount() {
- 	for (( day=1;day<=20;day++ ))
+ 	for (( day=1;day<20;day++ ))
 	do
 		totalAmount=$((totalAmount + $(checkWinLoose)))
+		totalAmount[$day]=$totalAmount
 	done
+		echo ${totalAmount[@]}
+		echo ${!totalAmount[@]}
 
 	if [[ $totalAmount -gt 0 ]]
 	then
