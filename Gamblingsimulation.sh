@@ -9,9 +9,10 @@ CASH=$STAKE
 
 MAX_STAKE=$((STAKE+STAKE/2))
 MIN_STAKE=$((MAX_STAKE-STAKE))
+echo $MAX_STAKE $MIN_STAKE
 
 function checkWinLoose() {
-	while [[ $CASH -lt $MAX_STAKE  && $CASH -gt $MIX_STAKE ]]
+	while [[ $CASH -lt $MAX_STAKE  && $CASH -gt $MIN_STAKE ]]
 	do
 		if [[ $((RANDOM%2)) -eq 1 ]]
 		then
